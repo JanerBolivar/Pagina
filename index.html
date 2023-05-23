@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Amarillo</title>
+    <link rel="shortcut icon" href="images\logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/estilos.css">
+
+    <meta name="theme-color" content="#2091F9">
+
+    <meta name="title" content="Carro autómata">
+    <meta name="description"
+        content="Cómo construir un carro autómata que detecte obstáculos y colores para tomar sus propias decisiones, y que a su vez los datos que genere por carro se envíen a una base de datos.">
+</head>
+
+<body>
+
+    <header class="hero">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <h2 class="nav__title">El Amarillo.</h2>
+            </div>
+
+            <ul class="nav__link nav__link--menu">
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Codigo</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Partes</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Resultados</a>
+                </li>
+
+                <img src="./images/close.svg" class="nav__close">
+            </ul>
+
+            <div class="nav__menu">
+                <img src="./images/menu.svg" class="nav__img">
+            </div>
+        </nav>
+
+        <section class="hero__container container">
+            <h1 class="hero__title">Carro autómata con IOT.</h1>
+            <p class="hero__paragraph">El amarillo es un vehiculo automata el cual utiliza un sensor de ultrasonido y un
+                sensor de color para determinar las acciones que va arrealizar, como detectar obstaculos y detectar
+                colores para tomar la decision de girar hacia el lado que le indique.</p>
+            <a href="#" class="cta">Conoce mas de el</a>
+        </section>
+    </header>
+
+    <main>
+        <section class="container about">
+            <h2 class="subtitle">Decisiones que debe tomar el carro.</h2>
+            <p class="about__paragraph">El vehículo utiliza un sensor de ultrasonidos, un sensor de colores y un módulo
+                bluetooth HC 06 (HC 05).</p>
+
+            <div class="about__main">
+                <article class="about__icons">
+                    <img src="images\ultrasonido.png" class="about__icon">
+                    <h3 class="about__title">Ultrasonido</h3>
+                    <p class="about__paragrah">El sensor emite pulsaciones acústicas cortas a través del aire, y de esta
+                        forma detecta objetos que después reflejará. Lo que mide le sensor es el tiempo entre emitir el
+                        pulso y la recepción del este.</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="images\colores.png" class="about__icon">
+                    <h3 class="about__title">Colores</h3>
+                    <p class="about__paragrah">El sensor de color converte la luz a una frecuencia que combina
+                        fotodiodos de silicio reconfigurables y una corriente de frecuencia en un solo circuito
+                        integrado.</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="images\Bluetooth.png" class="about__icon">
+                    <h3 class="about__title">Bluetooth</h3>
+                    <p class="about__paragrah">El Módulo Bluetooth HC-06 es un dispositivo que soporta conexiones
+                        inalámbricas a través del protocolo “Bluetooth”. Este permite escuchar peticiones de conexión y
+                        para generar peticiones de conexión.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="knowledge">
+            <div class="knowledge__container container">
+                <div class="knowledege__texts">
+                    <h2 class="subtitle">Resultados Ultimas prubas</h2>
+                    <table id="tabla" border="1">
+                        <tr>
+                            <th>Prueba</th>
+                            <th>Giros izquierdad</th>
+                            <th>Giros derecha</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>5</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>8</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <figure class="knowledge__picture">
+                    <img src="images\carro.png" class="knowledge__img">
+                </figure>
+            </div>
+        </section>
+
+        <section class="testimony">
+            <div class="testimony__container container">
+                <img src="./images/leftarrow.svg" class="testimony__arrow" id="before">
+
+                <section class="testimony__body testimony__body--show" data-id="1">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Los Resultados de la ultima prueba</h2>
+                        <div style="width: 500px">
+                            <canvas id="grafica"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+                            <script>
+                                const labels = ['Giros a la Izquierda', 'Giros a la Derecha']
+                                const colors = ['rgb(69,177,223)', 'rgb(99,201,122)'];
+
+                                const graph = document.querySelector("#grafica");
+
+                                const data = {
+                                    labels: labels,
+                                    datasets: [{
+                                        data: [1, 8],
+                                        backgroundColor: colors
+                                    }]
+                                };
+
+                                const config = {
+                                    type: 'pie',
+                                    data: data,
+                                };
+
+                                new Chart(graph, config);
+                            </script>
+                        </div>
+                    </div>
+
+                    <figure class="testimony__picture">
+                        <img src="images\datos.png" class="testimony__img">
+                    </figure>
+                </section>
+
+                <section class="testimony__body" data-id="2">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Los Resultados de la penultima prueba</h2>
+                        <div style="width: 500px">
+                            <canvas id="myChart"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+                            <script>
+                                var ctx = document.getElementById('myChart').getContext('2d');
+                                var chart = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        datasets: [{
+                                            data: [10, 10],
+                                            backgroundColor: ['#42a5f5', 'red'],
+                                            label: 'Giros del carro'
+                                        }],
+                                        labels: ['Giros a la Izquierda', 'Giros a la Derecha']
+                                    },
+                                    options: {
+                                        responsive: true
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <figure class="testimony__picture">
+                        <img src="images\datos.png" class="testimony__img">
+                    </figure>
+                </section>
+
+                <section class="testimony__body" data-id="3">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Los Resultados de la antepenultima prueba</h2>
+                        <div style="width: 500px">
+                            <canvas id="grafica3"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+                            <script>
+                                var ctx = document.getElementById('grafica3').getContext('2d');
+                                var chart = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        datasets: [{
+                                            data: [10, 10],
+                                            backgroundColor: ['#39AAE7', '#E7D739'],
+                                            label: 'Giros del carro'
+                                        }],
+                                        labels: ['Giros a la Izquierda', 'Giros a la Derecha']
+                                    },
+                                    options: {
+                                        responsive: true
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <figure class="testimony__picture">
+                        <img src="images\datos.png" class="testimony__img">
+                    </figure>
+                </section>
+
+
+                <img src="./images/rightarrow.svg" class="testimony__arrow" id="next">
+            </div>
+        </section>
+
+        <section class="price container">
+            <h2 class="subtitle">Obtén las piezas utilizadas para poder construir este vehículo</h2>
+
+            <div class="price__table">
+                <div class="price__element">
+                    <p class="price__name">Cerebro</p>
+                    <h3 class="price__price">Arduino Uno</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Arduino uno</p>
+                        <p class="price__features">Cable de datos</p>
+                        <p class="price__features">Entradas macho</p>
+                    </div>
+
+                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj24f32m6T7AhUZiIYKHU_MAVwYABANGgJ2dQ&ohost=www.google.com&cid=CAESa-D2yeuCf5HhcqTIobIaIP_g4mLmm0fSS6eqv49RDrJ1skGcB2a2cXxOWyh0-QiRugy3IG1l_SQW1sUlxO_heA45BouRC7OQPVCMONN7l7Xz0wFQJm75j78P1aL-TuSGVKU6WmdD6kTXy4uy&sig=AOD64_3DB-oHoXyP8HVpsYhSOMR9ou3DJw&ctype=5&q=&ved=2ahUKEwiEnff2m6T7AhUSpYQIHXA0Dd4Q9aACKAB6BAgIEBk&adurl="
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element price__element--best">
+                    <p class="price__name">Ultrasonido</p>
+                    <h3 class="price__price">Sensor HC-SR04</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">HC-SR04</p>
+                        <p class="price__features">Soporte sensor</p>
+                        <p class="price__features"></p>
+                    </div>
+
+                    <a href="https://articulo.mercadolibre.com.co/MCO-458852688-modulo-hc-sr04-sensor-distancia-ultrasonico-con-soporte-_JM?matt_tool=19390127&utm_source=google_shopping&utm_medium=organic"
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element">
+                    <p class="price__name">Sensor color</p>
+                    <h3 class="price__price">Sensor TCS3200</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">TCS3200</p>
+                        <p class="price__features">Entradas maco</p>
+                        <p class="price__features"></p>
+                    </div>
+
+                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjxv8TCnKT7AhWTzIYKHddeC_kYABAMGgJ2dQ&ohost=www.google.com&cid=CAESa-D2G8g-ru4AgzvWLrENyi05JDmMKtZ4i7FH5dVTicFD7opZoiX82gX4VO91Vg7B0Cm91ZfZy27_aj2-g0ggN3dogl5xSK39sGnnp2CvTqFTqEVRK-ecQLINfBoC2TXT_atYRKucMfVuHLeo&sig=AOD64_1KEiZiCp8aUQGASEaflbOGcKgFwA&ctype=5&q=&ved=2ahUKEwiFwbzCnKT7AhXDSDABHYogALMQ9aACKAB6BAgHEDM&adurl="
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element price__element--best">
+                    <p class="price__name">Modulo bluetooth</p>
+                    <h3 class="price__price">Modulo HC-06</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">HC-06</p>
+                        <p class="price__features">HC-05</p>
+                        <p class="price__features"></p>
+                    </div>
+
+                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjgtcjQnKT7AhXZ2YYKHa_WAXkYABADGgJ2dQ&ohost=www.google.com&cid=CAESa-D2zGjDl42vG4e_Ef2QyYEF0oHvbP7Du1WMEQKTqhuSk1RqVFaQQEHAcFs9TfzMq7ds_O_O-5NBBXZpuJWPLbAJBl30xaHiMMJSZ4RGCx-S9rCPcxnpjasFnGN4uVTo2bZA-expreu32CXa&sig=AOD64_1-BucS5po72pN6T6tyRM4Fl2BtKQ&ctype=5&q=&ved=2ahUKEwiImsDQnKT7AhWSTjABHUC8DFUQ9aACKAB6BAgBEA4&adurl="
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element">
+                    <p class="price__name">Puente H</p>
+                    <h3 class="price__price">Modulo l298n</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">l298n</p>
+                        <p class="price__features"></p>
+                        <p class="price__features"></p>
+                    </div>
+
+                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjItarinKT7AhVU44YKHfl8DHYYABAKGgJ2dQ&ohost=www.google.com&cid=CAESa-D2VCJUK4ho9Uh1wpWWI3Q_DiHxs8QBhD7JZecju1EsH0ylrLa021TOTT0Ilr76W-CfU9cnipupQpH86ZoCjMEykXW8inWG8HWGILswwuO0ZPU2yeMEqb_F19id96Wld54MQtpK3NDIovCr&sig=AOD64_01MhNlTuENYqu6HmDSPr5GNeXsQQ&ctype=5&q=&ved=2ahUKEwiE56LinKT7AhVISTABHfCBCfcQ9aACKAB6BAgIEBk&adurl="
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element price__element--best">
+                    <p class="price__name">Chasis</p>
+                    <h3 class="price__price">Kit Chasis Robot 4WD</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">4 ruedas</p>
+                        <p class="price__features">4 motores</p>
+                        <p class="price__features">Chasis desarmado</p>
+                    </div>
+
+                    <a href="https://www.vistronica.com/robotica/robot/kit-chasis-robot-inteligente-4wd-desarmado-detail.html"
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element">
+                    <p class="price__name">Interruptor</p>
+                    <h3 class="price__price">Interruptor basculante</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Interruptor 32x14</p>
+                        <p class="price__features"></p>
+                        <p class="price__features"></p>
+                    </div>
+
+                    <a href="https://www.vistronica.com/conectores-cables-y-switches/interruptor-basculante-32x14mm-detail.html"
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+
+                <div class="price__element price__element--best">
+                    <p class="price__name">Protoboard</p>
+                    <h3 class="price__price">Protoboard 400 puntos</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">400 puntos de conexión</p>
+                        <p class="price__features"></p>
+                        <p class="price__features"></p>
+                    </div>
+
+                    <a href="https://www.vistronica.com/conectores-cables-y-switches/placas-universales/protoboard/Protoboard400puntos-detail.html"
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element">
+                    <p class="price__name">Cables</p>
+                    <h3 class="price__price">Jumpers de conexión</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">10 M-m</p>
+                        <p class="price__features">10 H-h</p>
+                        <p class="price__features">20 M-h</p>
+                    </div>
+
+                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjmpon9naT7AhWMp4YKHTkzBbAYABAFGgJ2dQ&ohost=www.google.com&cid=CAESa-D2Mlf44x3ZDFY2tOwDyKe-a_T8ckRIDffwowFlDAhMiMZHVuBZWzMEf4f-9FVd5DFwMpEWko3bYa_ClE1CqPwTKXWWOdktkez73pv90q8xTNDHRmUzWoZ6LSN11jTypos8ct07N9aTGSIB&sig=AOD64_0_EeoADmY4IFYb26XgZjoTRIacpQ&ctype=5&q=&ved=2ahUKEwjX9YH9naT7AhUUTTABHRuyB7QQ9aACKAB6BAgEEBc&adurl="
+                        class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+                <div class="price__element price__element--best">
+                    <p class="price__name">Bateria</p>
+                    <h3 class="price__price">Bateria 12v</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">12 voltios</p>
+                        <p class="price__features">1.5 amperios</p>
+                        <p class="price__features">1800 Amperios hora</p>
+                    </div>
+
+                    <a href="https://wa.me/573124493357" class="price__cta">Cómpralo aquí</a>
+                </div>
+
+
+            </div>
+        </section>
+
+
+
+        <section class="questions container">
+            <h2 class="subtitle">Diagramas y codigo</h2>
+            <p class="questions__paragraph">A continuación se muestra el código fuente del arduino como el diagrama
+                electrónico y el diagrama de flujo.</p>
+
+            <section class="questions__container">
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Codigo
+                            <span class="questions__arrow">
+                                <img src="./images/arrow.svg" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <!--<p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>-->
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Diagrama electrónico
+                            <span class="questions__arrow">
+                                <img src="./images/arrow.svg" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <!--<p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>-->
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Diagrama de flujo
+                            <span class="questions__arrow">
+                                <img src="./images/arrow.svg" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <!--<p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>-->
+                    </div>
+                </article>
+            </section>
+
+            <!--<section class="questions__offer">
+                <h2 class="subtitle">¿Estas listo para aprender CSS?</h2>
+                <p class="questions__copy">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet ratione
+                    architecto magnam, officiis ex porro vero est voluptates quaerat quibusdam illo veniam reprehenderit
+                    eius atque tempora iure ab non autem.</p>
+                <a href="#" class="cta">Aprende ahora</a>
+            </section>-->
+        </section>
+    </main>
+
+    <footer class="footer">
+        <section class="footer__container container">
+            <nav class="nav nav--footer">
+                <h2 class="footer__title">El Amarillo.</h2>
+
+                <ul class="nav__link nav__link--footer">
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Inicio</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Acerca de</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Contacto</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Blog</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <form class="footer__form" action="https://formspree.io/f/mknkkrkj" method="POST">
+                <h2 class="footer__newsletter">Suscribete a la newsletter</h2>
+                <div class="footer__inputs">
+                    <input type="email" placeholder="Email:" class="footer__input" name="_replyto">
+                    <input type="submit" value="Registrate" class="footer__submit">
+                </div>
+            </form>
+        </section>
+
+        <section class="footer__copy container">
+            <div class="footer__social">
+                <a href="https://web.facebook.com/" class="footer__icons"><img src="./images/facebook.svg"
+                        class="footer__img"></a>
+                <a href="https://twitter.com/MunozJaner" class="footer__icons"><img src="./images/twitter.svg"
+                        class="footer__img"></a>
+                <a href="#" class="footer__icons"><img src="./images/youtube.svg" class="footer__img"></a>
+            </div>
+
+            <h3 class="footer__copyright">Derechos reservados &copy; Janer Muñoz</h3>
+        </section>
+    </footer>
+
+    <script src="./js/slider.js"></script>
+    <script src="./js/questions.js"></script>
+    <script src="./js/menu.js"></script>
+</body>
+
+</html>
