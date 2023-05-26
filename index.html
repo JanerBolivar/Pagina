@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Amarillo</title>
-    <link rel="shortcut icon" href="images\logo.ico" type="image/x-icon">
+    <title>La Cybertruck</title>
+    <link rel="shortcut icon" href="images\Logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/estilos.css">
 
@@ -19,24 +19,24 @@
 
 <body>
 
-    <header class="hero">
+    <header id="inicio" class="hero">
         <nav class="nav container">
             <div class="nav__logo">
-                <h2 class="nav__title">El Amarillo.</h2>
+                <h2 class="nav__title">La Cybertruck.</h2>
             </div>
 
             <ul class="nav__link nav__link--menu">
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Inicio</a>
+                    <a href="#inicio" class="nav__links">Inicio</a>
                 </li>
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Codigo</a>
+                    <a href="#codigo" class="nav__links">Codigo</a>
                 </li>
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Partes</a>
+                    <a href="#Partes" class="nav__links">Partes</a>
                 </li>
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Resultados</a>
+                    <a href="#resultados" class="nav__links">Resultados</a>
                 </li>
 
                 <img src="./images/close.svg" class="nav__close">
@@ -49,7 +49,7 @@
 
         <section class="hero__container container">
             <h1 class="hero__title">Carro autómata con IOT.</h1>
-            <p class="hero__paragraph">El amarillo es un vehiculo automata el cual utiliza un sensor de ultrasonido y un
+            <p class="hero__paragraph">La cybertruck es un vehiculo automata el cual utiliza un sensor de ultrasonido y un
                 sensor de color para determinar las acciones que va arrealizar, como detectar obstaculos y detectar
                 colores para tomar la decision de girar hacia el lado que le indique.</p>
             <a href="#" class="cta">Conoce mas de el</a>
@@ -60,7 +60,7 @@
         <section class="container about">
             <h2 class="subtitle">Decisiones que debe tomar el carro.</h2>
             <p class="about__paragraph">El vehículo utiliza un sensor de ultrasonidos, un sensor de colores y un módulo
-                bluetooth HC 06 (HC 05).</p>
+            WiFi ESP8266-01s.</p>
 
             <div class="about__main">
                 <article class="about__icons">
@@ -80,46 +80,46 @@
                 </article>
 
                 <article class="about__icons">
-                    <img src="images\Bluetooth.png" class="about__icon">
-                    <h3 class="about__title">Bluetooth</h3>
-                    <p class="about__paragrah">El Módulo Bluetooth HC-06 es un dispositivo que soporta conexiones
-                        inalámbricas a través del protocolo “Bluetooth”. Este permite escuchar peticiones de conexión y
-                        para generar peticiones de conexión.</p>
+                    <img src="images\WiFi.png" class="about__icon">
+                    <h3 class="about__title">WiFi</h3>
+                    <p class="about__paragrah">El ESP8266 es un sistema en chip (SoC) altamente integrado que combina un procesador de microcontrolador de bajo consumo con capacidades de conectividad Wi-Fi.</p>
                 </article>
             </div>
         </section>
 
-        <section class="knowledge">
+        <section id="resultados" class="knowledge">
             <div class="knowledge__container container">
                 <div class="knowledege__texts">
                     <h2 class="subtitle">Resultados Ultimas prubas</h2>
                     <table id="tabla" border="1">
+                    <thead>
                         <tr>
                             <th>Prueba</th>
-                            <th>Giros izquierdad</th>
+                            <th>Giros izquierda</th>
                             <th>Giros derecha</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>5</td>
-                            <td>8</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>1</td>
-                            <td>8</td>
-                        </tr>
+                    </thead>
+                    <tbody></tbody>
                     </table>
+
+                    <script>
+                    $(document).ready(function() {
+                     // Realiza una solicitud AJAX al archivo PHP para obtener los datos en formato JSON
+                    $.getJSON('mostrar_tabla.php', function(data) {
+                    // Procesa el JSON y construye la tabla HTML
+                    var tbody = $('#tabla tbody');
+                    $.each(data, function(index, row) {
+                    var html = '<tr>' +
+                           '<td>' + row.idPrueba + '</td>' +
+                           '<td>' + row.girosIzquierda + '</td>' +
+                           '<td>' + row.girosDerecha + '</td>' +
+                           '</tr>';
+                    tbody.append(html);
+                    });
+                    });
+                    });
+                    </script>
+
                 </div>
 
                 <figure class="knowledge__picture">
@@ -234,7 +234,7 @@
             </div>
         </section>
 
-        <section class="price container">
+        <section id="Partes" class="price container">
             <h2 class="subtitle">Obtén las piezas utilizadas para poder construir este vehículo</h2>
 
             <div class="price__table">
@@ -393,7 +393,7 @@
 
 
 
-        <section class="questions container">
+        <section id="codigo" class="questions container">
             <h2 class="subtitle">Diagramas y codigo</h2>
             <p class="questions__paragraph">A continuación se muestra el código fuente del arduino como el diagrama
                 electrónico y el diagrama de flujo.</p>
@@ -441,30 +441,17 @@
                             </span>
                         </h3>
 
-                        <!--<p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                            quam atque?</p>-->
                     </div>
                 </article>
             </section>
 
-            <!--<section class="questions__offer">
-                <h2 class="subtitle">¿Estas listo para aprender CSS?</h2>
-                <p class="questions__copy">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet ratione
-                    architecto magnam, officiis ex porro vero est voluptates quaerat quibusdam illo veniam reprehenderit
-                    eius atque tempora iure ab non autem.</p>
-                <a href="#" class="cta">Aprende ahora</a>
-            </section>-->
         </section>
     </main>
 
     <footer class="footer">
         <section class="footer__container container">
             <nav class="nav nav--footer">
-                <h2 class="footer__title">El Amarillo.</h2>
+                <h2 class="footer__title">La Cyberturk.</h2>
 
                 <ul class="nav__link nav__link--footer">
                     <li class="nav__items">
